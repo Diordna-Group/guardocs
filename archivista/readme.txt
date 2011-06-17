@@ -1,3 +1,9 @@
+This is initial mirror of the Archivista SVN. To find out more about archivista, please visit
+www.archivista.ch
+
+Original readme.txt
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 The whole source code of the ArchivistaBox software project is under GPLv2. You
 won't find a note on any file, but everything under /home/cvs as well under
 /home/archivista is GPLv2 code (the code is not compiled, it is Perl/PHP).
