@@ -1,0 +1,1560 @@
+
+package AVWeb;
+
+use strict;
+use AVConfig;
+use AVSession;
+use AVWebElements;
+use HTML::Table;
+use Wrapper;
+
+
+# Constants
+
+use constant APP_TITLE => 'Archivista';
+use constant APP_VERSION => '2011/IV';
+use constant WWW_LINK => 'http://www.archivista.ch';
+
+use constant POWEREDBY => '<br><font class="powered">Version ' .
+                           APP_VERSION.' - Powered by ' .
+                           '<a href="'.WWW_LINK.'">' .
+                           'Archivista GmbH</a></font><br><br>';
+
+
+# DETAIL and GLOBAL Views
+use constant GLOBALVIEW_FULL_IMG => 'full_img';
+use constant GLOBALVIEW_TABLE_DETAIL => 'table_detail';
+use constant GLOBALVIEW_TABLE_IMG => 'table_img';
+use constant GLOBALVIEW_NORMAL => 'normal';
+
+use constant DETAILVIEW_EDIT => 'edit';
+use constant DETAILVIEW_SEARCH => 'search';
+use constant DETAILVIEW_NORMAL => 'normal';
+use constant DETAILVIEW_ADD => 'add';
+
+
+# INDICATORS
+# (action=go_$foo)
+use constant ACT_INDI => 'go_';
+use constant ACT_POS => 'pos_';
+use constant FLD_INDI => 'fld_';
+use constant ORDER_INDI => 'order_';
+
+# ACTIONS
+# (action=$foo)
+use constant LBL_LOGIN => 'Login';
+use constant GO_LOGIN => ACT_INDI.'login';
+
+use constant LBL_UPDATE => 'Update';
+use constant GO_UPDATE => ACT_INDI.'update';
+
+use constant LBL_SEARCH => 'Search';
+use constant GO_SEARCH => ACT_INDI.'search';
+
+use constant LBL_ADD_STRING => 'Add';
+use constant GO_ADD_STRING => ACT_INDI.'add';
+
+use constant GO_TO => ACT_INDI.'to';
+
+use constant LBL_MAINLIST => 'Ok';
+use constant MAINLIST_NAME => 'mainext';
+use constant GO_MAINLIST => ACT_INDI.MAINLIST_NAME;
+
+# Files/Folders
+
+use constant PRJ_FOLDER => '/languages/';
+
+use constant CSS_FOLDER => PRJ_FOLDER.'css/';
+use constant CSS_FILE => CSS_FOLDER.'style.css';
+
+use constant JS_FOLDER => PRJ_FOLDER.'js/';
+use constant JS_FILE => JS_FOLDER.'functions.js';
+
+# Image Action Buttons
+# (action.x= $int,action.y = $int)
+
+# we don't have the root path of the web server in our CVS, therefore
+# we need to use all paths for /languages -> pics, js, css
+use constant IMG_FOLDER => PRJ_FOLDER.'pics/';
+
+use constant IMG_LOGIN_HEADER => IMG_FOLDER.'login_header.png';
+use constant IMG_LOGIN_LEFT => IMG_FOLDER.'login_left.png';
+
+use constant IMG_EXIT => IMG_FOLDER.'pma07.gif';
+use constant GO_IMG_EXIT => ACT_INDI.'exit';
+
+use constant IMG_ALL_RECORDS => IMG_FOLDER.'pma22.gif';
+use constant GO_IMG_ALL_RECORDS => ACT_INDI.'all_records';
+
+use constant IMG_PREV => IMG_FOLDER.'poa01.gif';
+use constant GO_IMG_PREV => ACT_INDI.'prev';
+
+use constant IMG_NEXT => IMG_FOLDER.'poa02.gif';
+use constant GO_IMG_NEXT => ACT_INDI.'next';
+
+use constant IMG_PREV_PAGE => IMG_FOLDER.'poa00.gif';
+use constant GO_IMG_PREV_PAGE => ACT_INDI.'prev_page';
+
+use constant IMG_NEXT_PAGE => IMG_FOLDER.'poa03.gif';
+use constant GO_IMG_NEXT_PAGE => ACT_INDI.'next_page';
+
+use constant IMG_SAVE_PERMANENT => IMG_FOLDER.'pma50.gif';
+use constant GO_IMG_SAVE_PERMANENT => ACT_INDI.'save_permanent';
+
+use constant IMG_VIEW => IMG_FOLDER.'reg_view_en.gif';
+use constant GO_MODE_VIEW => ACT_INDI.'mode_view';
+use constant IMG_SEARCH => IMG_FOLDER.'reg_search_en.gif';
+use constant GO_MODE_SEARCH => ACT_INDI.'mode_search';
+use constant IMG_EDIT => IMG_FOLDER.'reg_edit_en.gif';
+use constant GO_MODE_EDIT => ACT_INDI.'mode_edit';
+
+use constant LBL_NEW_STRING => 'Add new String';
+use constant GO_NEW_STRING => ACT_INDI."new_string";
+use constant LBL_DEL_STRING => 'Delete String';
+use constant GO_DEL_STRING => ACT_INDI."del_string";
+
+
+# SPLIT
+
+use constant VALUE_SPLIT => "\t";
+use constant ROW_SPLIT => "\n";
+
+
+
+# Cookie Names
+
+use constant HEIGHT => 'ScreenHeight';
+use constant WIDTH => 'ScreenWidth';
+
+# Errors
+use constant ERR_NO_TABLE=>"No Table or/and header are set.";
+use constant ERR_WRONG_DB=>"wrong database.";
+use constant ERR_MIN_LVL=>"Your level is to low to login.";
+# etc
+
+use constant AVFORM => 'avform';
+
+sub session {wrap(@_)}
+sub avwe {wrap(@_)}
+sub action {wrap(@_)}
+sub globalview {wrap(@_)}
+sub detailview {wrap(@_)}
+sub cache {wrap(@_)}
+sub start {wrap(@_)}
+sub limit {wrap(@_)}
+sub max {wrap(@_)}
+sub selected {wrap(@_)}
+sub move {wrap(@_)}
+sub flds {wrap(@_)}
+sub html {wrap(@_)}
+sub order {wrap(@_)}
+sub orderdef {wrap(@_)}
+sub where {wrap(@_)}
+sub wherevalue {wrap(@_)}
+sub header {wrap(@_)}
+sub primary_key {wrap(@_)}
+sub primary_value {wrap(@_)}
+sub height {wrap(@_)}
+sub width {wrap(@_)}
+sub title {wrap(@_)}
+sub noedit {wrap(@_)}
+sub records {wrap(@_)}
+sub minlvl {wrap(@_)}
+
+# session: AVSession-Object
+# avwe: AVWebElements-Object
+# action: Action that has to be done
+# globalview: View Mode we have
+# detailview: In wich modus we are (view,edit,search)
+# cache: Cache of the selected Row (Array)
+# start: Tells us where we start our Table
+# limit: limit how much records we show
+# max: Maximum Records we have
+# selected: absolute row number in selection
+# flds: hash containing the field values of the current record
+# html: The HTML Code generated by the program
+# order: Wich Field we order after
+# orderdef: +/- sorting for primary key
+# where: Search Field(s)
+# wherevalue: Search Value(s)
+# header: Saves the header of the table
+# primary_key: Primary Key of the Table
+# height: Screen Height of the Browser
+# width : Screen Width of the Browser
+# title :
+# noedit :
+# records :
+# minlvl : Minum level the user needs to run the app.
+
+
+
+
+
+=head1 new($title,$table,$sortdef)
+
+Create a av session, get cookie, if available, get and prepare values
+
+=cut
+
+sub new {
+  my $class = shift;
+  my $self = {};
+	bless $self,$class;
+  my ($title,$table,$minlvl,$sortdef) = @_;
+  $self->session(AVSession->new($table));
+  $self->setDefaults($title,$sortdef,$minlvl);
+  $self->avwe(AVWebElements->new()) if $self->session;
+  $self->_getScreenSize();
+  if ($self->session->cookie) {
+    $self->getSessionVals(); 
+    $self->getFields();
+    $self->getAction();
+    $self->getMoveNext();
+    $self->getDetailMode();
+    $self->doAction();
+  }
+	$self->records(0);
+	return $self;
+}
+
+
+
+
+
+
+=head1 setHeader
+
+Set which Fields we want to show. Needs to be done before the html-code
+
+=cut
+
+sub setHeader {
+  my $self = shift;
+  my ($pheader) = @_;
+  $self->header($pheader);
+}
+
+
+
+
+
+=head1 setDefaults($title,$orderdesc)
+
+Sets default values for our Attributes.
+
+=cut
+
+sub setDefaults {
+  my $self = shift;
+  my ($title,$orderdesc,$minlvl) = @_;
+  $self->limit(16);
+  $self->action('');
+  $self->selected('');
+  $self->primary_key('Laufnummer');
+	$self->order("");
+	$self->orderdef("+");
+	$self->minlvl($minlvl);
+	$self->minlvl(0) if $minlvl <= 0;
+	$self->orderdef($orderdesc) if $orderdesc eq "-";
+  $self->globalview($self->GLOBALVIEW_TABLE_DETAIL);
+  $self->detailview($self->DETAILVIEW_NORMAL);
+	$self->title($self->APP_TITLE);
+	$self->title($self->title()." ".$title) if $title ne "";
+}
+
+
+
+
+
+
+=head1 getSessionVals
+
+Sets the fields to the current vals value.
+
+=cut
+
+sub getSessionVals {
+  my $self = shift;
+  my $vals = $self->session->vals;
+  my @values = split($self->ROW_SPLIT,$vals);
+  foreach my $v (@values) {
+	  my (@array) = split($self->VALUE_SPLIT,$v);
+		my $name = shift @array;
+	  if (@array>1 || $name eq "where" || $name eq "wherevalue") {
+		  $self->$name(\@array);
+		} else {
+      $self->$name($array[0]);
+		}
+  }
+}
+
+
+
+
+
+
+=head1 getAction
+
+Get the next action from CGI (image/submit button OR get/post)
+
+=cut
+
+sub getAction {
+  my $self = shift;
+  my $check = $self->ACT_INDI;
+  my $check2 = $self->ACT_POS;
+  my $order = $self->ORDER_INDI;
+  foreach my $param (keys %{$self->session->cgivals}){
+    my $action = $param;
+    if(grep(/^$check/,$param)) {
+      $action =~ s/^($check)(.*?)((\.)(.*))?$/$1$2/;
+      $self->action($action) if $action ne "";
+    } elsif (grep(/^$check2/,$param)) {
+      $action =~ s/^($check2)(.*?)$/$2/;
+      if ($action ne $param) {
+        $self->action($self->GO_TO);
+        $self->selected($action);
+      }
+    } elsif (grep(/^$order/,$param)) {
+      $action =~ /^($order)(.*)_(.*)\.[x|y]/;
+      my $field = $2;
+      my $direction = $3;
+      $self->order($field);
+      $self->orderdef("-") if $direction eq "down";
+      $self->orderdef("+") if $direction eq "up";
+    }
+  }
+}
+
+
+
+
+
+
+=head1 getMoveNext
+
+According action get the next selection or work we have to do
+
+=cut
+
+sub getMoveNext {
+  my $self = shift;
+  $self->move($self->selected);
+  # Selection wich document we show
+  if ($self->action eq $self->GO_TO) {
+    $self->move($self->selected);
+  } elsif ($self->action eq $self->GO_IMG_PREV_PAGE) {
+    $self->move($self->selected - $self->limit);
+  } elsif ($self->action eq $self->GO_IMG_PREV) {
+    $self->move($self->selected-1);
+  } elsif ($self->action eq $self->GO_IMG_NEXT) {
+    $self->move($self->selected+1);
+  } elsif ($self->action eq $self->GO_IMG_NEXT_PAGE) {
+    $self->move($self->selected + $self->limit);
+  } elsif ($self->action eq $self->GO_IMG_ALL_RECORDS) {
+    # Set where to '' so that we can see all records
+    $self->order("");
+    $self->where([]);
+    $self->wherevalue([]);
+    # Go to the first value of the list
+    $self->move(0);
+  }
+}
+
+
+
+
+
+
+=head1 getDetailMode
+
+Saves the detailmode in detailview.
+
+=cut
+
+sub getDetailMode {
+  my $self = shift;
+  # In wich Detail view we want to be
+  if ($self->action eq $self->GO_MODE_VIEW) {
+    $self->detailview($self->DETAILVIEW_NORMAL);
+  } elsif ($self->action eq $self->GO_MODE_SEARCH) {
+    $self->detailview($self->DETAILVIEW_SEARCH);
+  } elsif ($self->action eq $self->GO_MODE_EDIT) {
+    $self->detailview($self->DETAILVIEW_EDIT);
+		$self->detailview($self->DETAILVIEW_NORMAL) if ($self->noedit == 1);
+  }
+}
+
+
+
+
+
+
+=head1 doAction
+
+Start Action
+
+=cut
+
+sub doAction {
+  my $self = shift;
+  # A real action i.E. update
+  if ($self->action eq $self->GO_UPDATE) {
+    $self->update();
+  } elsif ($self->action eq $self->GO_SEARCH) {
+    $self->search();
+  } elsif ($self->action eq $self->GO_ADD_STRING) {
+    $self->newString();
+  } elsif ($self->action eq $self->GO_MAINLIST) {
+    # If we have changed the go_mainext button value 
+    # from 'Ok' to Something  else
+    my $current = $self->session->param($self->GO_MAINLIST); #current value
+    my $default = $self->LBL_MAINLIST; # 'Ok'
+    if ( $current eq $default ) {
+      $self->action($self->session->param($self->MAINLIST_NAME));
+      if ($self->action eq $self->GO_NEW_STRING) {
+        $self->detailview($self->DETAILVIEW_ADD);
+      } elsif ($self->action eq $self->GO_DEL_STRING) {
+        $self->deleteString();
+      }
+    }
+  }
+}
+
+
+
+
+
+
+=head1 deleteString
+
+deletes an entry from the database
+
+=cut
+
+sub deleteString {
+  my $self = shift;
+  foreach my $id ($self->session->param('seldoc')) {
+    $self->session->av->delete($self->primary_key,$id);
+  }
+}
+
+
+
+
+
+
+=head1 newString
+
+Adds a new string to the Given Table.
+
+=cut
+
+sub newString {
+  my $self = shift;
+  my @fields;
+  my @values;
+	my $autokey = 0;
+  foreach my $head (@{$self->header}) {
+	  my $add = 1;
+	  if ($self->primary_key eq $self->session->av->FLD_DOC &&
+				$head eq $self->primary_key) {
+			# if we have a Laufnummer primary key then don't add this field
+			$add=0;
+			$autokey=1;
+		}
+		if ($add == 1 && $self->flds->{$head} ne "") {
+		  # only add fields if we have a value and if it is not Laufnummer field
+      push @fields,$head;
+      push @values,$self->flds->{$head};
+		}
+  }
+	# Check if the new string we want to add is already in the table.
+	my $field = $self->primary_key;
+	my $condField = $self->primary_key;
+	my $id;
+	my $addit = 1;
+	my $condValue;
+	if ($autokey==0) {
+	  # the key is given by the user
+	  $condValue = $self->flds->{$self->primary_key};
+	  my $available = $self->session->av->select($field,$condField,$condValue);
+    $addit = 0 if $available eq $condValue; # don't add it, it does exist
+	}
+  if ($addit==1) {		
+	  # add the record
+	  # No entry create one
+    $id = $self->session->av->add(\@fields,\@values);
+		$condValue = $id if $autokey==1;
+	}
+	# Show the new entry
+	$self->where('');
+	$self->_addWhere($self->primary_key,$condValue);
+  $self->detailview($self->DETAILVIEW_NORMAL);
+}
+
+
+
+
+
+
+=head1 update
+
+Updates Values in the Database
+
+=cut
+
+sub update {
+  my $self = shift;
+  my ($pfields,$pvals,$pcondfields,$pcondvals);
+
+  my @fields;
+  my @vals;
+	my $update=1;
+  foreach my $head (@{$self->header}) {
+    if ($head ne $self->primary_key) {
+      push(@vals,$self->flds->{$head});
+      push(@fields,$head);
+    } else {
+		  $update=0 if $self->flds->{$head} eq "";
+		}
+  }
+  $pcondfields = [$self->primary_key];
+  if($self->_isPrimaryKeyInHeader()) {
+    # Our Primary Field is shown so it has a Field in the Detail View.
+    # We take the Value of the Field.
+    $pcondvals   = [$self->flds->{$self->primary_key}];
+  } else {
+    # Our Primary Field is not shown so we have to take it from somewhere else
+    # We take it from primary_value
+    $pcondvals    = [$self->primary_value];
+  }
+	if ($update==1) {
+    $self->session->av->update(\@fields,\@vals,$pcondfields,$pcondvals);
+	}
+}
+
+
+
+
+
+
+=head1 search()
+
+Sets where and wherevalue for the search String.
+
+=cut
+
+sub search {
+  my $self = shift;
+  # Reset old values;
+  $self->where([]);
+  $self->wherevalue([]);
+	$self->move(0);
+  foreach my $key (keys %{$self->flds}) {
+    # The field has a value?
+    my ($name,$type,$size,$quote) = $self->session->av->field($key);
+    if ($self->flds->{$key} ne "" ) {
+      if($size > 0) {
+        $self->_addWhere("~$key","%".$self->flds->{$key}."%");
+      } else {
+        $self->_addWhere($key,$self->flds->{$key});
+      }
+    }
+  }
+  # Set Normal View after Search
+  $self->detailview($self->DETAILVIEW_NORMAL);
+}
+
+
+
+
+
+
+# _addWhere($key,$value)
+#
+# Adds a key value pair to the where and wherevalue attributes
+#
+##
+
+sub _addWhere {
+  my $self = shift;
+  my ($key,$value) = @_;
+  my $pwhere = $self->where;
+	my $pvalues = $self->wherevalue;
+	if(ref($pwhere) eq 'ARRAY') {
+    push (@$pwhere,$key);
+    push (@$pvalues,$value);
+	} else {
+	  $pwhere = [$key];
+		$pvalues = [$value];
+	}
+  $self->where($pwhere);
+  $self->wherevalue($pvalues);
+}
+
+
+
+
+
+
+=head1 getFields
+
+Get the Fields in the DetailFrame from cgi.
+
+=cut
+
+sub getFields {
+  my $self = shift;
+  my %temp;
+	if (ref($self->header) eq "ARRAY") {
+    foreach my $titel (@{$self->header}) {
+      my $field = $self->FLD_INDI.lc($titel);
+      $temp{$titel} = $self->session->param($field);
+    }
+	}
+  $self->flds(\%temp);
+}
+
+
+
+
+
+
+=head1 $bool=check
+
+Checks if the class was made right.
+( if we have a cookie, and WebElements Object )
+
+=cut
+
+sub check {
+  my $self = shift;
+	my $alltables = shift;
+  if ($self->session->cookie && $self->avwe && $self->session->av ) {
+    if (($self->session->av->isArchivistaMain) ||
+		  ($alltables==1 && $self->session->av->isArchivistaDB)) {
+      if($self->header->[0] ne '') {
+			  if($self->session->av->user->level >= $self->minlvl) {
+          return 1;
+				} else {
+				  $self->session->message($self->ERR_MIN_LVL);
+				}
+      } else {
+        $self->session->message($self->ERR_NO_TABLE);
+      }
+    } else {
+      $self->session->message($self->ERR_WRONG_DB);
+    }
+  }
+  return 0;
+}
+
+
+
+
+
+
+=head1 startHtml
+
+Initialis AVWebElements, start html and form.
+
+=cut
+
+sub startHtml {
+  my $self = shift;
+  my $head = qq|<DOCTYPE HTML PUBLIC "-//W3C//DTD |.
+	  qq|HTML 4.01 Transitional//EN">\n|.
+	  qq|<html>\n|.
+		qq|<head>\n<title>|.$self->title.qq|</title>\n|.
+    qq|<link rel="stylesheet" type="text/css"|.
+		qq| href="|.CSS_FILE.qq|" />\n|.
+		qq|<script src="|.JS_FILE.
+		qq|" type="text/javascript"></script>\n|.
+    qq|<meta http-equiv="Content-Type" content="text/html; |.
+		qq|charset=iso-8859-1" />\n</head><body>\n|;
+	my $script = $ENV{REQUEST_URI};
+  my $form = qq|<form method="post" action="$script" |.
+	           qq|name="|.AVFORM.qq|" |.
+						 qq|onsubmit="getScreenSize();">\n|;
+  my $html = $head.$form;
+  return $html;
+}
+
+
+
+
+
+
+
+# _getScreenSize
+#
+# Gets height and width and checks if they're possible.
+#
+##
+
+sub _getScreenSize {
+  my $self = shift;
+  $self->height($self->session->getCookie($self->HEIGHT));
+  $self->width($self->session->getCookie($self->WIDTH));
+
+  my $minx = 500;      my $miny = 580;
+  my $maxx = 2048;     my $maxy = 1536;
+  my $defaultx = 1024; my $defaulty = 768;
+
+  $self->height($minx) if $self->height < $minx;
+  $self->height($maxx) if $self->height > $maxx;
+  $self->width($miny) if $self->width < $miny;
+  $self->width($maxy) if $self->width > $maxy;
+
+  # We can't use the whole Screen so
+  $self->height($self->height - 8);
+  $self->width($self->width - 8);
+
+  my $symbols = 37;
+  my $header = 23;
+  my $detail = 252;
+  my $status = 25;
+  my $row = 17; # ~ is the sum of pixels every row has.
+  $self->height(($self->height -($symbols+$header+$status+$detail)));
+  $self->limit(int($self->height/$row));
+}
+
+
+
+
+
+
+=head1 endHtml
+
+End Formular and HTML.
+
+=cut
+
+sub endHtml {
+  my $self = shift;
+  return "</from></body></html>";
+}
+
+
+
+
+
+
+=head1 $htmlpart=getNoCookie
+
+Returns the no Cookie Part.
+
+=cut
+
+sub getNoCookie {
+  my $self = shift;
+  print "Please Enable Cookies";
+}
+
+
+
+
+
+
+=head1 printHtml
+
+Prints out everything (without header, which is printet in AVSession)
+
+=cut
+
+sub printHtml {
+  my $self = shift;
+	my $html = $self->session->header();
+  $html .= $self->startHtml();
+  $html .= $self->html;
+  $html .= $self->endHtml();
+	print $html;
+  $self->html("");
+  $self->session->closeHandler();
+}
+
+
+
+
+
+
+=head1 getLogin
+
+Gives back the Login Form
+
+=cut
+
+sub getLogin {
+  my $self = shift;
+
+  my $style;
+  $style .= "position:absolute; top:50%; left:50%;";
+  $style .= "width:48em; height:22em;";
+  $style .= "margin-left:-24em; margin-top:-11em;";
+  $style .= "border:1px solid #000;background:#fff; padding:0em;";
+
+  my $table = HTML::Table->new(-spacing => 0,-padding=>0,-border=>0);
+  $table->setWidth('100%');
+  $table->setStyle($style);
+  $table->addRow('&nbsp;');
+  $table->addRow('&nbsp;',$self->getLoginForm());
+  $table->setRowHeight(1,53);
+  $table->setCellAttr(1,1,"background='".$self->IMG_LOGIN_HEADER."'");
+  $table->setCellColSpan(1,1,2);
+  $table->setCellAttr(2,1,"background='".$self->IMG_LOGIN_LEFT."'");
+  $table->setCellWidth(2,1,248);
+  $table->setCellHeight(2,1,307);
+
+  $self->html($table->getTable());
+
+}
+
+
+
+
+
+
+=head1 getLoginForm()
+
+Returns the default login form.
+
+=cut
+
+sub getLoginForm {
+  my $self = shift;
+  my $table = HTML::Table->new(-border => 0,
+                               -padding=>0,
+                               -spacing=>0,
+                               -width=>'100%');
+  my $conf = AVConfig->new();
+  my @login_data = ({ 
+      label => 'Host',
+      field => {name => 'host',default => $conf->def_host},
+    },{ 
+      label => 'Database',
+      field => {name => 'db',default => $conf->def_db},
+    },{ 
+      label => 'User',
+      field => {name => 'user',default => $conf->def_user},
+    },{ 
+      label => 'Password',
+      field => {name => 'pw',default => ''},
+      type => 'password',
+    },);
+
+  undef $conf;
+
+  $table->addRow($self->title.$self->POWEREDBY);
+  $table->setCellClass(-1,-1,'Title');
+  $table->setCellAlign(-1,-1,'Right');
+  $table->setCellColSpan(-1,-1,2);
+  my $form = HTML::Table->new(-border=>0,-padding=>0,-spacing=>0);
+  foreach my $login (@login_data) {
+    my $field;
+    my $label = $self->avwe->label($login->{label});
+    if($login->{type} eq 'password') {
+      $field = $self->avwe->password($login->{field});
+    } else {
+      $field = $self->avwe->textfield($login->{field});
+    }
+    $form->addRow($label,$field);
+    $form->setCellWidth(-1,1,100);
+    $form->setCellHeight(-1,1,20);
+  }
+
+  my %button;
+  $button{name} = $self->GO_LOGIN;
+  $button{value} = $self->LBL_LOGIN;
+
+  $form->addRow($self->avwe->submit(\%button));
+
+  $form->setCellColSpan(-1,1,2);
+  $form->setCellAlign(-1,1,'RIGHT');
+  if ($self->session->message ne "") {
+    my %data;
+    $data{name} = $self->session->message;
+    $form->addRow($self->avwe->label($data{name}));
+    $form->setCellColSpan(-1,1,2);
+    $form->setCellAlign(-1,1,'RIGHT');
+  }
+  $table->addRow($form->getTable);
+  $table->setCellAlign(2,1,'CENTER');
+  $table->setCellVAlign(2,1,'MIDDLE');
+  return $table->getTable();
+}
+
+
+
+
+
+
+=head1 getMain
+
+Checks if we are in Image Full View or not. And displays the Window.
+
+=cut
+
+sub getMain {
+  my $self = shift;
+  $self->prepareVals();
+	my $rows = $self->getTable();
+  my $table;
+  $table = HTML::Table->new(-border => 0);
+  $table->setAlign('CENTER');
+  $table->addRow($self->getButtons());
+  $table->addRow();
+  $table->setRowHeight(-1,3);
+  if($self->globalview eq $self->GLOBALVIEW_FULL_IMG){
+    # we are in Full Image View
+    $table->addRow($self->getImage());
+  } elsif ($self->globalview eq $self->GLOBALVIEW_TABLE_DETAIL) {
+    $table->addRow($rows);
+    $table->addRow($self->getDetail());
+  } elsif ($self->globalview eq $self->GLOBALVIEW_TABLE_IMG) {
+    $table->addRow($self->getTable());
+    $table->addRow($self->getImage());
+  } else {
+    # Normal View
+    $table->addRow($self->getTable());
+    $table->addRow($self->getDetail(),$self->getImage());
+    $table->setCellColSpan(-2,1,2);
+  }
+  $table->addRow($self->getStatus());
+  $table->setRowHeight(-1,"25");
+  $self->action(""); # We don't need action anymore so delete it
+	$self->setSessionVals();
+  $self->html($table->getTable()); # print it out
+}
+
+
+
+
+
+
+=head1 prepareVals
+
+prepars Values for the Program
+
+=cut
+
+sub prepareVals {
+  my $self = shift;
+  $self->_getPrimaryKey();
+  my ($psearch,$pvals) = $self->_prepareSearchVals();
+  $self->max($self->session->av->count($psearch,$pvals));
+  $self->checkMoveNext();
+}
+
+
+
+
+
+
+# _getPrimaryKey
+#
+# Checks if the self->primary_key ist set to primary key if not then it does it.
+#
+##
+
+sub _getPrimaryKey {
+  my $self = shift;
+  my @avfield = $self->session->av->field($self->primary_key);
+  if($avfield[0] ne $self->primary_key || $avfield[1] ne 'PRI') {
+    $self->primary_key($self->session->av->keyfield);
+  }
+}
+
+
+
+
+
+
+# \@psearch,\@pvalues = _prepareSearchVals
+#
+# Prepares search and values for AVDocs
+#
+##
+
+sub _prepareSearchVals {
+  my $self = shift;
+	my @search = ();
+	my @searchvalues = ();
+  if (ref($self->where) eq 'ARRAY') {
+	  if (@{$self->where}[0] ne "") {
+      push @search,@{$self->where};
+      push @searchvalues,@{$self->wherevalue};
+		} else {
+		  $self->_prepareSearchValsDef(\@search,\@searchvalues);
+		}
+	} else {
+		$self->_prepareSearchValsDef(\@search,\@searchvalues);
+	}
+  return (\@search,\@searchvalues);
+}
+
+
+
+
+
+
+# _prepareSearchValsDef(\@psearch,\@psearchvalues)
+#
+# Adds a '' or a zero to searchvalues for search.
+#
+##
+
+sub _prepareSearchValsDef {
+  my $self = shift;
+  my ($psearch,$psearchvalues) = @_;
+  my $field = $self->order;
+  $field = $self->primary_key if $field eq "";
+ 	my ($name,$type,$size,$quote) = $self->session->av->field($field);
+	push @{$psearch},"!".$field.$self->orderdef;
+	if ($quote==1) {
+	  push @{$psearchvalues},'';
+  } else {
+	  push @{$psearchvalues},"0";
+	}
+}
+
+
+
+
+
+
+=head1 checkMoveNext 
+
+Checks if the Value we've got from cgi is ok.
+
+=cut
+
+sub checkMoveNext {
+  my $self = shift;
+  if($self->move >= $self->max) {
+    $self->move($self->max-1);
+  } elsif ($self->move < 0) {
+    $self->move(0);
+  }
+  # calculate the next starting position for sql limit
+  $self->start($self->limit * int($self->move/$self->limit));
+}
+
+
+
+
+
+
+=head1 setSessionVals
+
+Set Values of the Session and updates DB.
+
+=cut
+
+sub setSessionVals {
+  my $self = shift;
+  my @vals = qw(selected where wherevalue order 
+                globalview detailview header
+                primary_key primary_value );
+  $self->session->vals("");
+  foreach my $v (@vals) {
+	  my $tmp = $self->session->vals."$v".$self->VALUE_SPLIT;
+	  $self->session->vals($self->session->vals."$v".$self->VALUE_SPLIT);
+	  $self->session->vals($tmp);
+	  if(ref($self->$v) eq "ARRAY") {
+		  $tmp = $self->session->vals.join($self->VALUE_SPLIT,@{$self->$v});
+      $self->session->vals($tmp);
+		} else {
+      $tmp = $self->session->vals.$self->$v;
+			$self->session->vals($tmp);
+		}
+		$tmp = $self->session->vals.$self->ROW_SPLIT;
+		$self->session->vals($tmp);
+  }
+  $self->session->updateLogin();
+}
+
+
+
+
+
+
+=head1 $html=getButtons(\@pbuttons)
+
+Returns the Buttonbar for the Archivista WebClient.
+
+=cut
+
+sub getButtons {
+  my $self = shift;
+  my ($pbuttons) = @_;
+  my $table;
+  $table = HTML::Table->new(-border=>0,-width=>($self->width-32));
+  my @buttons = ( { 
+    name => $self->GO_IMG_EXIT,
+    src =>$self->IMG_EXIT,
+    css_class => 'Button',
+  },{
+    name=>$self->GO_IMG_ALL_RECORDS,
+    src =>$self->IMG_ALL_RECORDS,
+    css_class => 'Button',
+  },{ 
+    name=>$self->GO_IMG_PREV_PAGE,
+    src =>$self->IMG_PREV_PAGE,
+    css_class => 'Button',
+  },{
+    name=>$self->GO_IMG_PREV,
+    src =>$self->IMG_PREV,
+    css_class => 'Button',
+  },{ 
+    name=>$self->GO_IMG_NEXT,
+    src =>$self->IMG_NEXT,
+    css_class => 'Button',
+  },{ 
+    name=>$self->GO_IMG_NEXT_PAGE,
+    src =>$self->IMG_NEXT_PAGE,
+    css_class => 'Button',
+  });
+	if (ref($pbuttons) eq "ARRAY") {
+	  push @buttons,@$pbuttons; # add buttons from a derivated class
+	}
+
+  foreach my $button (@buttons) {
+	  my $part = $self->avwe->imagebutton($button);
+		if ($part ne "") {
+      $table->addCol($part);
+      $table->setCellWidth(-1,-1,'15px');
+      $table->setCellAlign(-1,-1,'Left');
+		}
+  }
+  my $list;
+  my $button1="";
+  if($self->detailview eq $self->DETAILVIEW_EDIT) {
+    my %data;
+    $data{name} = $self->MAINLIST_NAME;
+    $data{elements} = ['0',$self->GO_NEW_STRING, $self->GO_DEL_STRING ];
+    $data{labels} = { '0' => '...',
+                      $self->GO_NEW_STRING => $self->LBL_NEW_STRING,
+                      $self->GO_DEL_STRING => $self->LBL_DEL_STRING,
+                    };
+    $list = $self->avwe->dropdown(\%data);
+
+    my $message1 = 'Do you want to proceed?';
+    my $message2 = 'Please select a document!';
+    $data{name} = $self->GO_MAINLIST;
+    $data{value} = $self->LBL_MAINLIST;
+    $data{css_class} = '';
+    $data{onClick} = "checkConfirm('".$message1."','".$message2."'," .
+                     ($self->records).")";
+    $button1 = $self->avwe->submit(\%data);
+  }
+  $table->addCol($list.$button1);
+  $table->setCellAlign(-1,-1,'Right');
+  $table->setCellVAlign(-1,-1,'Bottom');
+  return $table->getTable();
+}
+
+
+
+
+
+
+=head1 $html=getImage
+
+Return the Image Frame for the Archivista WebClient.
+
+=cut
+
+sub getImage {
+  my $self = shift;
+  return "Proxy: Image";
+}
+
+
+
+
+
+
+=head1 $html=getTable
+
+Returns The Main Table for the Archivista WebClient.
+
+=cut
+
+sub getTable {
+  my $self = shift;
+  my $table;
+  $table = HTML::Table->new(-width=>($self->width-48), -class=> 'data',
+                            -spacing=>0, -padding=>0);
+  my $i = 0;
+  my $prows = $self->getTableData($table);
+  foreach my $prow (@$prows) {
+    my $value = pop @$prow if (!$self->_isPrimaryKeyInHeader());
+    # Save id for Later
+    my $id = $$prow[0];
+    if($self->detailview eq $self->DETAILVIEW_EDIT && $id ne "") {
+      $self->addCheckBox($prow,$i,$value);
+    }
+    $self->addSubmitButton($prow,$i);
+    $table->addRow(@$prow);
+    # Backup id
+    $$prow[0] = $id;
+    # Remove checkbox we don't need it anymore.
+    pop @$prow if $self->detailview eq $self->DETAILVIEW_EDIT;
+    for (my $c = 1;$c <= @$prow;$c++) {
+      $table->setCellStyle(-1,$c,'padding-left: 16px;');
+    }
+    if($self->move == $self->start+$i) {
+      $self->primary_value($value) if(!$self->_isPrimaryKeyInHeader());
+      $self->selected($self->start+$i);
+      $self->cache($prow);
+      $table->setRowClass(-1,'ActiveRow');
+    } else {
+      $table->setRowClass(-1,'DeactiveRow');
+    }
+    $i++;
+  }
+  if(not defined($self->cache)) {
+    $self->selected($self->start);
+    $self->cache($$prows[0]);
+    $table->setRowClass(2,'ActiveRow');
+  }
+
+  return '<div style="width:100%;height:'.$self->height.'px;'
+         . 'overflow:auto;" >'
+         . $table->getTable()
+         . '</div>';
+}
+
+
+
+
+
+
+=head1 \@prows = getTableData()
+
+Returns data from the database
+
+=cut
+
+sub getTableData {
+  my $self = shift;
+  my ($table) = @_;
+  $self->session->av->limit($self->limit,$self->start);
+  my ($psearch,$pvals) = $self->_prepareSearchVals();
+  my $prows = $self->session->av->select($self->header,$psearch,$pvals);
+	my $i=0; # how many rows did we get (needed for selection)
+	foreach (@$prows) { $i++; }
+	$self->records($i);
+  $self->getHeader($table,$self->header);
+  return $prows;
+}
+
+
+
+
+
+
+# 1/0 = _isPrimaryKeyInHeader()
+#
+# Checks if the primary_key is in the given Header
+#
+##
+
+sub _isPrimaryKeyInHeader {
+  my $self = shift;
+  my $boolean = 0;
+  foreach my $h (@{$self->header}) {
+    if($h eq $self->primary_key) {
+      $boolean = 1;
+    }
+  }
+  return $boolean;
+}
+
+
+
+
+
+
+
+=head1 addCheckBox(\@prow,$i,$value)
+
+Adds CheckBox at the end of prow.
+
+=cut
+
+sub addCheckBox {
+  my $self = shift;
+  my ($prow,$i,$value) = @_;
+  my %checkbox;
+  $checkbox{name} = "seldoc";
+  $checkbox{css_class} = "Checkbox";
+  $checkbox{css_class} = 'CheckboxActive' if ($self->move == $self->start+$i);
+  $checkbox{value} = $$prow[0];
+  $checkbox{value} = $value if(!$self->_isPrimaryKeyInHeader());
+  $checkbox{id} = "checkbox_nr_".$$prow[0];
+  push @$prow,$self->avwe->checkbox(\%checkbox);
+}
+
+
+
+
+
+
+=head1 addSubmitButton(\@prow,$i)
+
+Adds a Submit Button at the begining of the Row 
+and takes the old first value as the shown name.
+
+=cut
+
+sub addSubmitButton {
+  my $self = shift;
+  my ($prow,$i) = @_;
+  my %data;
+  $data{name} = $self->ACT_POS.($self->start+$i);
+  $data{value} = $$prow[0];
+  $data{css_class} = 'Link';
+  $data{css_class} = 'LinkActive' if ($self->move == ($self->start+$i));
+  $$prow[0] = $self->avwe->submit(\%data);
+}
+
+
+
+
+
+
+=head1 getHeader($table,$parray)
+
+Adds the Array to the $table and sets them to Header. Needs to be done first.
+
+=cut
+
+sub getHeader {
+  my $self = shift;
+  my ($table,$parray) = @_;
+  foreach my $v (@$parray) {
+    my %data;
+    my $table2 = HTML::Table->new(-border=>0);
+    $data{name} = $v;
+    $data{css_class} = 'ButtonHeader';
+    my $pelements = $self->avwe->buttonarrows(\%data);
+
+    $table2->addCol($pelements->[0].$pelements->[1]);
+    $table2->setColWidth(-1,1);
+    $table2->addCol($pelements->[2]);
+    $table2->setCellColSpan(-2,1,2);
+    $table2->setColAlign(-1,'LEFT');
+    $table->addCol($table2->getTable());
+  }
+  if ($self->detailview eq $self->DETAILVIEW_EDIT) {
+    my %data1;
+    $data1{name} = "selalldocs";
+    $data1{css_class} = "CheckboxHeader";
+    $data1{onClick} = "javascript:activateAllDocSel(".$self->records.")";
+    $table->addCol($self->avwe->checkbox(\%data1));
+  }
+  $table->setRowHead(-1);
+  $table->setRowClass(-1,'header');
+}
+
+
+
+
+
+
+=head1 $html=getDetail
+
+Returns the Detail "Frame" with all Information about our selected row.
+
+=cut
+
+sub getDetail {
+  my $self = shift;
+  my $table;
+  $table = HTML::Table->new(-width => ($self->width-32),
+                            -class => 'detail',
+                            -spacing=>0,
+                            -padding=>0);
+
+  $table->addCol($self->getDetailViewButtons());
+  $table->setColVAlign(-1,'TOP');
+  my $class = $self->_getDetailClass();
+  $table->addCol('&nbsp;');
+  $table->setColClass(-1,$class);
+  $table->setColWidth(-1,1);
+  $table->addCol($self->getDetailView());
+  $table->setColClass(-1,'detail_data');
+  $table->setColHeight(-1,"250");
+  $table->setColWidth(-1,'99%');
+  $table->setColVAlign(-1,'TOP');
+  return $table->getTable();
+}
+
+
+
+
+
+
+# $css_class = _getDetailClass()
+#
+# Returns in wich detailview we are: 'view' 'edit' 'search'
+#
+##
+sub _getDetailClass {
+  my $self = shift;
+  my $class = 'view';
+  if($self->detailview eq $self->DETAILVIEW_EDIT
+  || $self->detailview eq $self->DETAILVIEW_ADD) {
+    $class = 'edit';
+  } elsif($self->detailview eq $self->DETAILVIEW_SEARCH) {
+    $class = 'search';
+  }
+  return $class;
+}
+
+
+
+
+
+
+=head1 getDetailViewButtons
+
+Retruns The 3 Buttons (view,search,edit);
+
+=cut
+
+sub getDetailViewButtons {
+  my $self = shift;
+  my $table = HTML::Table->new(-border => 0,-padding=>0,-spacing=>0);
+  my @buttons = ( {
+    name=>$self->GO_MODE_VIEW,
+    src=>$self->IMG_VIEW,
+    css_class => 'Button',
+  },{
+    name=>$self->GO_MODE_SEARCH,
+    src=>$self->IMG_SEARCH,
+    css_class => 'Button',
+  },{
+    name=>$self->GO_MODE_EDIT,
+    src=>$self->IMG_EDIT,
+    css_class => 'Button',
+  });
+  pop(@buttons) if ($self->noedit==1);
+  foreach my $button (@buttons) {
+    $table->addRow($self->avwe->imagebutton($button));
+  }
+  return $table->getTable();
+}
+
+
+
+
+
+
+=head getDetailView
+
+Returns the detail "frame".
+
+=cut
+
+sub getDetailView {
+  my $self = shift;
+  my $table = HTML::Table->new(-padding => 2);
+  for(my $c = 0;$c < @{$self->header} ;$c++) {
+    $self->_addField($table,$self->header->[$c],$c);
+  }
+  my %data;
+  if($self->detailview eq $self->DETAILVIEW_SEARCH) {
+    $data{name} = $self->GO_SEARCH;
+    $data{value} = $self->LBL_SEARCH;
+  } elsif($self->detailview eq $self->DETAILVIEW_EDIT) {
+    $data{name} = $self->GO_UPDATE;
+    $data{value} = $self->LBL_UPDATE;
+  } elsif($self->detailview eq $self->DETAILVIEW_ADD) {
+    $data{name} = $self->GO_ADD_STRING;
+    $data{value} = $self->LBL_ADD_STRING;
+  } else {
+    $data{name} = '';
+    $data{value} = '';
+  }
+  if($data{name} ne "") {
+    $table->addRow($self->avwe->submit(\%data));
+    $table->setCellColSpan(-1,1,2);
+    $table->setRowAlign(-1,'RIGHT');
+  }
+  return $table->getTable();
+}
+
+
+
+
+
+
+# _addField($table,$field,$c)
+#
+# Adds a text-field('edit' and 'search' mode)
+# or plain-text('view' mode) in $table.
+#
+##
+
+sub _addField {
+  my $self = shift;
+  my ($table,$field,$c) = @_;
+  my %data;
+  my $text;
+	# Detail View needs extra ucfirst(lc())
+  my $label = $self->avwe->label(ucfirst(lc($field)));
+  $data{size} = 50;
+  $data{bold} = 0;
+  if ($self->detailview eq $self->DETAILVIEW_EDIT) {
+    if ($field eq $self->primary_key) {
+      $data{name} = lc($self->FLD_INDI.$field);
+      $data{default} = $self->cache->[$c];
+      $data{css_class} = 'primary_key';
+      $data{readonly} = 1;
+      $text = $self->avwe->textfield(\%data);
+    } else {
+      $data{name} = lc($self->FLD_INDI.$field);
+      $data{default} = $self->cache->[$c];
+      $text = $self->avwe->textfield(\%data);
+    }
+  } elsif ($self->detailview eq $self->DETAILVIEW_SEARCH
+        || $self->detailview eq $self->DETAILVIEW_ADD ) {
+    $data{name} = lc($self->FLD_INDI.$field);
+		if ($self->detailview eq $self->DETAILVIEW_ADD &&
+		    $field eq $self->primary_key && 
+				$self->primary_key eq $self->session->av->FLD_DOC) {
+      $data{css_class} = 'primary_key';
+	    $data{readonly} = 1;			
+		}
+    $text = $self->avwe->textfield(\%data);
+  } else {
+    $text = $self->avwe->label($self->cache->[$c]);
+  }
+  $table->addRow($label,$text);
+}
+
+
+
+
+
+
+=head1 $html=getStatus
+
+Returns the StatusBar.
+
+=cut
+
+sub getStatus {
+  my $self = shift;
+  my $status;
+  $status = "Database ".$self->session->av->getDatabase();
+  $status .= ", Table ".$self->session->av->table;
+  $status .= ", Document ".($self->selected+1)."/".$self->max if $self->max>0;
+  return $status;
+}
+
+1;
+

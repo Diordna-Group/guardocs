@@ -1,0 +1,73 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'search' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Searchform',
+			text => 'Suche nach :',
+			origin => [ 10, 60],
+			name => 'search',
+			size => [ 80, 18],
+	}},
+	'Searchform' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			width => 215,
+			left => 405,
+			name => 'Searchform',
+			origin => [ 405, 307],
+			y_centered => 1,
+			height => 90,
+			bottom => 307,
+			size => [ 215, 90],
+			sizeDontCare => 0,
+			text => 'Suchformular',
+			originDontCare => 0,
+			x_centered => 1,
+	}},
+	'search_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Searchform',
+			text => '',
+			origin => [ 90, 60],
+			name => 'search_in',
+			size => [ 115, 18],
+	}},
+	'ok' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Searchform',
+			text => 'Suche',
+			origin => [ 10, 10],
+			name => 'ok',
+			size => [ 96, 36],
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::search($self->owner,1);
+','ok', 'onClick'),
+	}},
+	'cancel' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Searchform',
+			text => 'Abbrechen',
+			origin => [ 110, 10],
+			name => 'cancel',
+			size => [ 96, 36],
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::search($self->owner,0);
+','cancel', 'onClick'),
+	}},
+	);
+}

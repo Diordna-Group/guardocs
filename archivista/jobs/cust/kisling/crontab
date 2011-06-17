@@ -1,0 +1,3 @@
+30 20 * * * /usr/bin/perl /home/data/archivista/kis/adrimp.pl >>/home/data/archivista/av.log
+*/2 5-19 * * * /usr/bin/perl /home/data/archivista/kis/import.pl >>/home/data/archivista/av.log
+

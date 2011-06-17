@@ -1,0 +1,90 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'id' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowHiY,
+			origin => [ 8, 116],
+			name => 'id',
+			size => [ 260, 18],
+	}},
+	'Form1' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			width => 281,
+			left => 372,
+			name => 'Form1',
+			origin => [ 372, 292],
+			y_centered => 1,
+			sizeMin => [ 281, 145],
+			height => 145,
+			bottom => 292,
+			size => [ 281, 145],
+			sizeMax => [ 815, 145],
+			growMode => gm::GrowLoY | gm::GrowHiX | gm::DontCare,
+			onSetup => Prima::VB::VBLoader::GO_SUB('my $self = $_[0]; 
+Go::edit($self);
+','Form1', 'onSetup'),
+			originDontCare => 0,
+			x_centered => 1,
+	}},
+	'de' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowHiX,
+			origin => [ 9, 84],
+			name => 'de',
+			size => [ 259, 22],
+	}},
+	'en' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowHiX,
+			origin => [ 10, 55],
+			name => 'en',
+			size => [ 258, 21],
+	}},
+	'ok' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Form1',
+			text => 'Save',
+			growMode => gm::GrowLoX | gm::GrowHiY,
+			origin => [ 68, 8],
+			name => 'ok',
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];   
+Go::edit_save($self->owner(),1);
+
+','ok', 'onClick'),
+			size => [ 96, 36],
+	}},
+	'cancel' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Form1',
+			text => 'Cancel',
+			growMode => gm::GrowLoX | gm::GrowHiY,
+			origin => [ 172, 8],
+			name => 'cancel',
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::edit_save($self->owner(),0);
+','cancel', 'onClick'),
+			size => [ 96, 36],
+	}},
+	);
+}

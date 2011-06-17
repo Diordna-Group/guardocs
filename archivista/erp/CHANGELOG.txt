@@ -1,0 +1,21 @@
+/**
+* @package ArchivistaERP
+* @copyright (C) 2005 - 2008 ArchivistaERP
+* @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
+* ArchivistaERP is Free Software
+*/
+
+1. Changelog
+------------
+This is a changelog for ArchivistaERP All releases.
+
+The ArchivistaERP suite is based on work from FrontAccounting. 
+FrontAccounting itself is based on work from OpenAccounting.
+OpenAccounting itself is based on work from WebERP.
+
+The initial ArchivistaERP release is 25th of April 2008.   
+
+2. Copyright and disclaimer
+---------------------------
+This application is opensource software released under the GPL.  Please
+see source code and the LICENSE file

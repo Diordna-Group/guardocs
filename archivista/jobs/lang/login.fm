@@ -1,0 +1,137 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'host' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Login',
+			text => 'Host',
+			origin => [ 8, 108],
+			name => 'host',
+			size => [ 100, 17],
+	}},
+	'Login' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			left => 388,
+			width => 250,
+			y_centered => 1,
+			origin => [ 388, 183],
+			name => 'Login',
+			bottom => 183,
+			height => 140,
+			size => [ 250, 140],
+			sizeDontCare => 0,
+			text => 'Login',
+			x_centered => 1,
+			originDontCare => 0,
+	}},
+	'db' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Login',
+			text => 'Database',
+			origin => [ 8, 88],
+			name => 'db',
+			size => [ 100, 19],
+	}},
+	'user' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Login',
+			text => 'User',
+			origin => [ 8, 68],
+			name => 'user',
+			size => [ 100, 19],
+	}},
+	'pw' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Login',
+			text => 'Password',
+			origin => [ 10, 50],
+			name => 'pw',
+			size => [ 100, 19],
+	}},
+	'db_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Login',
+			text => 'archivista',
+			origin => [ 112, 88],
+			name => 'db_in',
+			size => [ 96, 19],
+	}},
+	'user_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Login',
+			text => 'Admin',
+			origin => [ 112, 68],
+			name => 'user_in',
+			size => [ 96, 19],
+	}},
+	'pw_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Login',
+			text => 'archivista',
+			writeOnly => 1,
+			origin => [ 112, 50],
+			name => 'pw_in',
+			size => [ 96, 19],
+	}},
+	'cancel' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Login',
+			text => 'Cancel',
+			origin => [ 112, 4],
+			name => 'cancel',
+			onClick => Prima::VB::VBLoader::GO_SUB('exit(0);
+','cancel', 'onClick'),
+			size => [ 96, 36],
+	}},
+	'host_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Login',
+			text => 'localhost',
+			origin => [ 112, 108],
+			name => 'host_in',
+			size => [ 96, 19],
+	}},
+	'ok' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Login',
+			text => 'Login',
+			origin => [ 8, 4],
+			name => 'ok',
+			default => 1,
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::run($self->owner);
+','ok', 'onClick'),
+			size => [ 96, 36],
+	}},
+	);
+}

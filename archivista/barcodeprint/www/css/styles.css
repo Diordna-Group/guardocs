@@ -1,0 +1,59 @@
+BODY { 
+  font-family: arial, helvetica, sans-serif;
+  background: #f7f7f7;
+}
+INPUT {
+  font-size: 12pt;
+  border-left: 1px solid #474747;
+  border-right: 1px solid #474747;
+  border-top: 1px solid #474747;
+  border-bottom: 1px solid #474747;
+  background-color: #fcfcfc;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+SELECT {
+  font-size: 12pt;
+  background-color: #fcfcfc;
+}
+TD {
+  font-size: 12pt;
+}
+TD.title {
+	font-size: 16px;
+	font-weight: bold;
+	color: #5b68ab;
+}
+/*TD.title {
+  font-size: 18pt;
+  color: #006606;
+}*/
+TD.login {
+	padding-left: 20px;
+}
+TD.label {
+  font-weight: bold;
+  color: #5b68ab;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+TD.Error {
+  font-weight: bold;
+  color: #9e0000;
+	padding-left: 20px;
+}
+A.small {
+  font-size: 10pt;
+  text-decoration: none;
+}
+A:out.small {
+  font-size: 10pt;
+  text-decoration: none;
+}
+A:hover.small {
+  font-size: 10pt;
+  text-decoration: none;
+}
+TABLE.latest {
+  border: 1px solid #474747;
+}

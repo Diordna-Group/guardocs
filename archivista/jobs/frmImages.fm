@@ -1,0 +1,364 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'img' => {
+		class   => 'Prima::ImageViewer',
+		module  => 'Prima::ImageViewer',
+		profile => {
+			owner => 'frm',
+			origin => [ 548, 43],
+			name => 'img',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 200, 180],
+			valignment => ta::Middle,
+			borderWidth => 1,
+			syncPaint => 1,
+			alignment => ta::Center,
+			centered => 0,
+	}},
+	'frm' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			accelItems => undef,
+			left => 280,
+			width => 760,
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Default},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+
+','frm', 'onClick'),
+			size => [ 760, 532],
+			sizeDontCare => 0,
+			text => 'Import images',
+			onMouseClick => Prima::VB::VBLoader::GO_SUB('my ($self, $btn, $mod, $x, $y, $dblclk) = @_;
+
+
+
+','frm', 'onMouseClick'),
+			buffered => 0,
+			originDontCare => 0,
+			visible => 1,
+			name => 'frm',
+			origin => [ 280, 267],
+			height => 532,
+			bottom => 267,
+			hiliteBackColor => 0xc6c3c6,
+			growMode => gm::GrowLoX | gm::GrowHiY | gm::DontCare,
+	}},
+	'txtHost' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'frmLogin',
+			text => 'localhost',
+			origin => [ 116, 72],
+			name => 'txtHost',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 150, 19],
+	}},
+	'chkSingle' => {
+		class   => 'Prima::CheckBox',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			origin => [ 290, 156],
+			name => 'chkSingle',
+			autoHeight => '0',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 250, 20],
+			autoWidth => '1',
+			growMode => gm::GrowHiX | gm::GrowHiY,
+			text => 'All images in one doc',
+	}},
+	'txtDatabase' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'frmLogin',
+			text => 'archivista',
+			origin => [ 116, 52],
+			name => 'txtDatabase',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 150, 19],
+	}},
+	'chkNone' => {
+		class   => 'Prima::CheckBox',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			origin => [ 290, 180],
+			name => 'chkNone',
+			autoHeight => '0',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+self::deselectAll($self);
+
+','chkNone', 'onClick'),
+			size => [ 250, 20],
+			autoWidth => '1',
+			growMode => gm::GrowHiX | gm::GrowHiY,
+			text => 'Deselect all images',
+	}},
+	'txtUser' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'frmLogin',
+			text => 'Admin',
+			origin => [ 116, 32],
+			name => 'txtUser',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 150, 19],
+	}},
+	'chkText' => {
+		class   => 'Prima::CheckBox',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			origin => [ 290, 132],
+			name => 'chkText',
+			onChange => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+
+','chkText', 'onChange'),
+			autoHeight => '0',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 250, 20],
+			onMouseUp => Prima::VB::VBLoader::GO_SUB('my ($self, $btn, $mod, $x, $y) = @_;
+my $frm = $self->owner;
+my @obj = $frm->get(name=>\'sld\');
+my $obj1 = $obj[3];
+@obj = $frm->get(name=>\'lblsld\');
+my $obj2 = $obj[3];
+my $show = 0;
+if ($self->checked==0) {
+  $show=1;
+}
+$obj1->set(visible=>$show);
+$obj2->set(visible=>$show);
+','chkText', 'onMouseUp'),
+			autoWidth => '1',
+			growMode => gm::GrowHiX | gm::GrowHiY,
+			text => 'Process as text images',
+	}},
+	'txtPassword' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'frmLogin',
+			text => '',
+			writeOnly => 1,
+			origin => [ 116, 12],
+			name => 'txtPassword',
+			passwordChar => '*',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 150, 19],
+	}},
+	'lblFields' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frm',
+			text => 'Fill out fields in database (Field1=Value1;Field2=Value2) ',
+			origin => [ 8, 76],
+			name => 'lblFields',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 524, 25],
+	}},
+	'lblHost' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frmLogin',
+			text => 'Host',
+			origin => [ 8, 70],
+			alignment => ta::Right,
+			name => 'lblHost',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 100, 19],
+	}},
+	'lst' => {
+		class   => 'Prima::ListBox',
+		module  => 'Prima::Lists',
+		profile => {
+			owner => 'frm',
+			origin => [ 9, 236],
+			name => 'lst',
+			popupItems => 
+[],
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];   
+self::setToggle($self);
+','lst', 'onClick'),
+			size => [ 740, 284],
+			onMouseUp => Prima::VB::VBLoader::GO_SUB('my ($self, $btn, $mod, $x, $y) = @_;
+self::showCurrent($self);
+','lst', 'onMouseUp'),
+			text => '',
+			onKeyUp => Prima::VB::VBLoader::GO_SUB('my ($self, $code, $key, $mod) = @_;
+self::showCurrent($self);
+','lst', 'onKeyUp'),
+			extendedSelect => 0,
+			multiSelect => 1,
+			items => [],
+	}},
+	'lblDatabase' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frmLogin',
+			text => 'Database',
+			origin => [ 8, 52],
+			alignment => ta::Right,
+			name => 'lblDatabase',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 100, 19],
+	}},
+	'cmdOk' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			text => 'Import',
+			origin => [ 646, 8],
+			name => 'cmdOk',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Default},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+self::importImages($self);
+','cmdOk', 'onClick'),
+			size => [ 102, 28],
+	}},
+	'lblUser' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frmLogin',
+			text => 'User',
+			origin => [ 8, 32],
+			alignment => ta::Right,
+			name => 'lblUser',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 100, 19],
+	}},
+	'cmdCancel' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			text => 'Exit',
+			origin => [ 546, 8],
+			name => 'cmdCancel',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Default},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+self::exit($self);
+
+','cmdCancel', 'onClick'),
+			size => [ 96, 28],
+	}},
+	'lblPassword' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frmLogin',
+			text => 'Password',
+			origin => [ 8, 12],
+			alignment => ta::Right,
+			name => 'lblPassword',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 100, 19],
+	}},
+	'chkAll' => {
+		class   => 'Prima::CheckBox',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			origin => [ 290, 204],
+			name => 'chkAll',
+			autoHeight => '0',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+self::selectAll($self);
+','chkAll', 'onClick'),
+			size => [ 250, 20],
+			growMode => gm::GrowHiX | gm::GrowHiY,
+			text => 'Select all images',
+	}},
+	'lbl' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frm',
+			syncPaint => 1,
+			text => 'JPeg USB stick import -- (c) 2007 by Archivista GmbH  ',
+			origin => [ 8, 8],
+			name => 'lbl',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 539, 24],
+	}},
+	'txtFields' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'frm',
+			backColor => 0xfffbf7,
+			text => '',
+			origin => [ 8, 47],
+			name => 'txtFields',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 524, 30],
+	}},
+	'sld' => {
+		class   => 'Prima::Slider',
+		module  => 'Prima::Sliders',
+		profile => {
+			owner => 'frm',
+			visible => 0,
+			min => 128,
+			value => 170,
+			origin => [ 312, 104],
+			max => 255,
+			name => 'sld',
+			onChange => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+my $own=$self->owner;
+my @obj = $own->get(name=>\'lblsld\');
+my $obj = $obj[3];
+$obj->set(text=>"(".$self->value.")");
+','sld', 'onChange'),
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 144, 20],
+	}},
+	'lblsld' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'frm',
+			visible => 0,
+			text => '(170)',
+			origin => [ 456, 110],
+			name => 'lblsld',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 56, 18],
+	}},
+	'frmLogin' => {
+		class   => 'Prima::GroupBox',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'frm',
+			text => 'Login information',
+			origin => [ 8, 120],
+			name => 'frmLogin',
+			font => {name => 'Bitstream Vera Sans', size => 10, style => 0, pitch => fp::Variable},
+			size => [ 275, 112],
+	}},
+	);
+}

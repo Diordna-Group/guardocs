@@ -1,0 +1,434 @@
+BODY.ImageBlue {
+	background: #dce4ed;
+}
+DIV.ImageBlue {
+  background: #dce4ed;
+}
+TABLE.ImageBlue {
+  background: #dce4ed;
+}
+P {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+TR.DeactiveRow {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding-left: 2px;
+	padding-right: 3px;
+	background: #ffffff;
+  text-align: left;
+	height: 15px;
+}
+TR.ActiveRow {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding-left: 2px;
+	padding-right: 3px;
+	text-align: left;
+	background: #efefef;
+	height: 15px;
+}
+TD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+TD.StatusMessage {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding-top: 8px;
+	padding-bottom: 0px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+TD.Table {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 3px;
+	padding-right: 3px;
+	background: #f7f7f7;
+}
+TD.symb {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-left: 0px;
+	padding-right: 0px;
+	background: #f7f7f7;
+}
+TD.Error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #ff5548;
+}
+TD.Header {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: left;
+	background: #ffd8ad;
+	padding-left: 2px;
+	padding-right: 3px;
+	border-bottom: 1px solid #000000;
+  color: #1a2772;
+  height: 20px;
+}
+TD.HeaderRight {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: right;
+	background: #ffd8ad;
+	padding-left: 0px;
+	padding-right: 0px;
+  color: #1a2772;
+	border-bottom: 1px solid #000000;
+  height: 20px;
+}
+TD.Checkbox {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: right;
+	background: #ffffff;
+	padding-left: 0px;
+	padding-right: 2px;
+  color: #1a2772;
+  height: 11px;
+}
+TD.CheckboxActive {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-align: right;
+	background: #efefef;
+	padding-left: 0px;
+	padding-right: 2px;
+  color: #1a2772;
+  height: 11px;
+}
+TD.Title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	color: #898eb2;
+	padding-right: 10px;
+}
+TD.Detailedit {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 5px solid #ffc5ad;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background: #ffffff;
+  padding-left: 4px;
+	padding-top: 3px;
+}
+TD.Detailview {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 5px solid #adb9ff;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background: #ffffff;
+  padding-left: 4px;
+	padding-top: 3px;
+}
+TD.Detailsearch {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 5px solid #d1ddba;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	background: #ffffff;
+  padding-left: 4px;
+	padding-top: 3px;
+}
+TD.TableBorder {
+  background: #ffffff;
+}
+INPUT.Reiterview {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #adb9ff;
+  background: #adb9ff;
+  padding-left: 4px;
+	height: 18px;
+}
+INPUT.Reitersearch {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #d1ddba;
+	background: #d1ddba;
+  padding-left: 4px;
+	height: 18px;
+}
+INPUT.Reiteredit {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #000000;
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #ffc5ad;
+	background: #ffc5ad;
+  padding-left: 4px;
+	height: 18px;
+}
+
+FONT.powered {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+INPUT {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	background: #ffffff;
+  padding-left: 2px;
+}
+INPUT.noBorder {
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	background: #ffffff;
+	margin: 1px;
+}
+INPUT.noBorderTh {
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	background: #ffd8ad;
+	margin: 0px;
+}
+INPUT.jump {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+	background: none;
+}
+INPUT.email {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	background: #d7e1e9;
+	height: 17px;
+	padding-left: 2px;
+}
+INPUT.Link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+INPUT.LinkActive {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	background: #efefef;
+	margin: 0px;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+INPUT.white {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	background: #ffffff;
+	padding-left: 2px;
+}
+INPUT.Button {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-left: 0px solid #c0c0c0;
+	border-top: 0px solid #c0c0c0;
+	border-right: 0px solid #c0c0c0;
+	border-bottom: 0px solid #c0c0c0;
+	background: #dce4ed;
+}
+INPUT.Checkbox {
+	background: #ffffff;
+  color: #1a2772;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	height: 14px;
+	width: 14px;
+	margin: 0px;
+	top-margin: 0px;
+	bottom-margin: 0px;
+}
+INPUT.CheckboxActive {
+	background: #efefef;
+  color: #1a2772;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	height: 14px;
+	width: 14px;
+	margin: 0px;
+	top-margin: 0px;
+	bottom-margin: 0px;
+}
+INPUT.CheckboxHeader {
+	background: #ffd8ab;
+  color: #1a2772;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	height: 14px;
+	width: 14px;
+	margin: 0px;
+	margin-right: 2px;
+}
+
+
+SELECT {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	border-left: 1px solid #c0c0c0;
+}
+A {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+A:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+A:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+A:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: underline;
+	color: #3e53dd;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+  padding-left: 0px;
+}
+.Error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+.hidden_zone {
+  display: none;
+	height: 0px;
+	width: 0px;
+}
+TD.MenuItem {
+  font-weight: bold;
+	color: #3e53dd;
+	padding-left: 20px;
+	width: 5px;
+}
+TD.MenuItem1 {
+	padding: 0px;
+	width: 10px;
+}
+TD.MenuItem2 {
+	padding-left: 0px;
+}
+DIV.FormTitle {
+	font-size: 16px;
+	font-weight: bold;
+	color: #5b68ab;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+DIV.Menu {
+	padding-left: 20px;
+}
+INPUT.Menu {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #3e53dd;
+	background:transparent;
+	border: 0px;
+	margin-right: 0px;
+}
+INPUT.MenuActive {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #5b68ab;
+	background:transparent;
+	border: 0px;
+	margin-right: 0px;
+}
+TD.Info {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style:italic;
+}
+.hidden_ip {
+  visibility: collapse;
+	display: none;
+	height: 0px;
+	width: 0px;
+}

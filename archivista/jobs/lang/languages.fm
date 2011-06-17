@@ -1,0 +1,100 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'languages' => {
+		class   => 'Prima::Grid',
+		module  => 'Prima::Grids',
+		profile => {
+			backColor => 0xffffff,
+			drawHGrid => 1,
+			drawVGrid => 1,
+			rows => 3,
+			leftCell => 0,
+			size => [ 912, 634],
+			hiliteColor => 0x000000,
+			color => 0x000000,
+			vScroll => 1,
+			buffered => 1,
+			transparent => 1,
+			onSetup => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];      
+Go::load_data($self);
+','languages', 'onSetup'),
+			owner => 'Form1',
+			visible => 0,
+			cellIndents => [ 1, 0,0,0],
+			indentCellColor => 0x000000,
+			constantCellHeight => 25,
+			origin => [ 0, 0],
+			name => 'languages',
+			hScroll => 1,
+			indentCellBackColor => 0xc6c3c6,
+			popupItems => [
+[ 'Neuen Datensatz hinzufügen', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_; 
+Go::sub_run($self->owner(),\'insert.fm\');
+','languages', 'action')], 
+[ 'Ausgewählten Datensatz editieren', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;     
+Go::sub_run($self->owner,\'edit.fm\');
+','languages', 'action')], 
+[ 'Ausgewählten Datensatz löschen', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;     
+Go::delete_run($self->owner());
+','languages', 'action')], 
+],
+			hiliteBackColor => 0xe3dedb,
+			light3DColor => 0x000000,
+			borderWidth => 1,
+			syncPaint => 0,
+			growMode => gm::GrowLoY | gm::GrowHiX,
+			gridGravity => 10,
+	}},
+	'Form1' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			left => 57,
+			backColor => 0xfffbf7,
+			width => 912,
+			y_centered => 1,
+			size => [ 912, 633],
+			sizeDontCare => 0,
+			text => 'Languages.pl',
+			originDontCare => 0,
+			menuItems => 
+[[ 'programm', '~Programm', [
+   [ 'Änderungen e~xportieren', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;
+Go::mydump();
+','Form1', 'action')], 
+   [ 'beenden', 'B~eenden', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;  
+Go::exit($self);
+','Form1', 'action')], 
+   ]], 
+[ 'bearbeiten', '~Bearbeiten', [
+   [ '~Suchen', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;
+Go::sub_run($self,\'search.fm\');
+','Form1', 'action')], 
+   [ '~Neuen Datensatz hinzufügen', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;
+Go::sub_run($self,\'insert.fm\');
+','Form1', 'action')], 
+   [ 'Ausgewählten Datensatz ~editieren', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_;   
+Go::edit($self);
+','Form1', 'action')], 
+   [ 'Ausgewählten Datensatz ~löschen', Prima::VB::VBLoader::GO_SUB('my ( $self, $item) = @_; 
+Go::delete_run($self);
+','Form1', 'action')], 
+   ]], 
+],
+			name => 'Form1',
+			origin => [ 57, 50],
+			height => 633,
+			bottom => 50,
+			light3DColor => 0xffffff,
+			syncPaint => 1,
+			growMode => gm::GrowLoY | gm::GrowHiX | gm::DontCare,
+			x_centered => 1,
+			centered => 1,
+	}},
+	);
+}

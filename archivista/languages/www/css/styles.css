@@ -1,0 +1,243 @@
+BODY {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+  background: #f7f7f7;
+}
+H1 {
+	font-size: 22px;
+	font-weight: normal;
+	color: #ff0000;
+}
+A.error {
+  font-weight: bold;
+	text-decoration: none;
+	color: #ff0000;
+}
+A.error:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #ff0000;
+}
+A.error:hover {
+  font-weight: bold;
+	text-decoration: underline;
+	color: #ff0000;
+}
+A.error:active {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #ff0000;
+}
+A {
+  font-weight: normal;
+	text-decoration: none;
+	color: #0920a3;
+}
+A:visited {
+	font-weight: normal;
+	text-decoration: none;
+	color: #0920a3;
+}
+A:hover {
+  font-weight: normal;
+	text-decoration: underline;
+	color: #a1abed;
+}
+A:active {
+	font-weight: normal;
+	text-decoration: underline;
+	color: #0920a3;
+}
+A.New {
+  font-weight: bold;
+	text-decoration: none;
+	color: #ff7300;
+}
+A.New:visited {
+  font-weight: bold;
+	text-decoration: none;
+	color: #ff7300;
+}
+A.New:hover {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #ff7300;
+}
+A.New:active {
+  font-weight: bold;
+	text-decoration: underline;
+	color: #ff7300;
+}
+A.Delete {
+  font-weight: bold;
+	text-decoration: none;
+	color: #9f0505;
+}
+A.Delete:visited {
+  font-weight: bold;
+	text-decoration: none;
+	color: #9f0505;
+}
+A.Delete:hover {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #9f0505;
+}
+A.Delete:active {
+  font-weight: bold;
+	text-decoration: underline;
+	color: #9f0505;
+}
+A.Edit {
+	font-weight: bold;
+	text-decoration: none;
+	color: #066208;
+}
+A.Edit:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #066208;
+}
+A.Edit:hover {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #066208;
+}
+A.Edit:active {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #066208;
+}
+A.Menu {
+	font-weight: bold;
+	text-decoration: none;
+	color: #1a2772;
+}
+A.Menu:visited {
+	font-weight: bold;
+	text-decoration: none;
+	color: #1a2772;
+}
+A.Menu:hover {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #1a2772;
+}
+A.Menu:active {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #1a2772;
+}
+
+INPUT.NoBorder {
+	font-family: arial, helvetica, sans-serif;
+	border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	background: #f7f7f7;
+}
+INPUT {
+	font-family: arial, helvetica, sans-serif;
+	border-left: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	background: #ffffff;
+  padding-left: 2px;
+}
+TEXTAREA {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	border-left: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+	background: #ffffff;
+  padding-left: 2px;
+  width: 350px;
+	height: 30px;
+}
+SELECT {
+	font-family: arial, helvetica, sans-serif;
+}
+TD.NoWrap {
+	white-space: nowrap;
+}
+TD.Error {
+	font-weight: bold;
+	color: #9f0505
+}
+TH.Element {
+	text-align: left;
+	color: #1a2772;
+	height: 18px;
+  background: #ffd8ad;
+  padding-left: 2px;
+}
+TD.Element {
+  text-align: left;
+	height: 18px;
+	background: #dce4ed;
+	padding-left: 2px;
+}
+TD.LoginMask {
+	background: #f7f7f7;
+}
+TD.TableBorder {
+  background: #474747;
+}
+TD.TableAdminDbBorder {
+	background: #af0000;		
+}
+TD.Title {
+	font-size: 25px;
+	font-weight: bold;
+	color: #898eb2;
+	padding-right: 10px;
+}
+TD.Subtitle {
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	padding-right: 10px;
+}
+TD.MenuItem {
+  font-weight: bold;
+	color: #1a2772;
+	padding-left: 30px;
+}
+TD.MenuItem0 {
+	padding-left: 0px;
+}
+TD.MenuItem1 {
+	padding-left: 20px;
+}
+TD.MenuItem2 {
+	padding-left: 40px;
+}
+FONT.MenuItemBull0 {
+  font-weight: bold;
+	color: #1a2772;
+}
+FONT.MenuItemBull1 {
+  font-weight: bold;
+	color: #1a2772;
+}
+FONT.MenuItemBull2 {
+  font-weight: bold;
+	color: #1a2772;
+}
+DIV.FormTitle {
+	font-size: 16px;
+	font-weight: bold;
+	color: #5b68ab;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+DIV.Form {
+	padding-left: 20px;
+}
+DIV.Menu {
+	padding-left: 20px;
+}

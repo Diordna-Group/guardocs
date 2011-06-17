@@ -1,0 +1,56 @@
+Parameter	Parameter	Statushilfe	A=Arbeit	P=Privat	L=Löschen
+Parameter	Parameter	Landcodes	A=Oesterreich	D=Deutschland	CH=Schweiz
+Parameter	Parameter	PfadGrafikTemp	c:\
+Parameter	Parameter	PfadGrafikBildschirm	c:\
+Parameter	Parameter	PfadGrafikErfasst	c:\
+Parameter	Parameter	PfadGrafikIndex	c:\
+Parameter	Parameter	PfadGrafikArchiv1	c:\
+Parameter	Parameter	PfadGrafikArchiv2	d:\
+Parameter	Parameter	PfadGrafikArchiv3	e:\
+Parameter	Parameter	PfadGrafikAblage	c:\
+Parameter	Parameter	GrafikmodulOffsetX	0
+Parameter	Parameter	GrafikmodulOffsetY	0
+Parameter	Parameter	GrafikmodulRand	720
+Parameter	Parameter	ArchivOrdner	1
+Parameter	Parameter	ArchivAutomatisch	1
+Parameter	Parameter	ArchivMByte	300
+Parameter	Parameter	ArchivDateien	1000
+Parameter	Parameter	ArchivFaktor	2
+Parameter	Parameter	JobsOCRRecognition	0
+Parameter	Parameter	PDFFiles	1
+Parameter	Parameter	JobsBarcodeRecognition	0
+Parameter	Parameter	AppName	Archivista
+Parameter	Parameter	Bildschirmkopien	0
+Parameter	Parameter	ScannenDefinitionen	A4 (SW);0;300;11792;16724;0;0;0;-1;0;-1;0;1;0;0;1800;	A4 (Grau);1;150;11792;16724;0;0;0;-1;0;-1;0;1;0;0;1800;	A4 (Farbe);2;150;11792;16724;0;0;0;-1;0;-1;0;1;0;0;1800;	A5-Broschüre;0;300;11792;16724;0;0;1;-1;1;-1;2;20;0;0;1800;	US letter (B/W);0;300;12240;15840;0;0;0;-1;0;-1;0;1;0;0;1800;	US letter (gray);1;150;12240;15840;0;0;0;-1;0;-1;0;1;0;0;1800;	US letter (colour);2;150;12240;15840;0;0;0;-1;0;-1;0;1;0;0;1800;
+Parameter	Parameter	AVVersion	520
+SQL	Archiv	Titel ???	Titel LIKE '%[Titel]%' ORDER BY Datum, Akte
+SQL	Archiv	Notiz ???	Notiz LIKE '%[Notiz]%' ORDER BY Datum,Akte ASC;
+SQL	Archiv	Stichwort ???	Stichwörter LIKE '%[Stichwörter]%' ORDER BY Datum, Akte
+SQL	Archiv	Markierte	Markiert <> 0 ORDER BY Datum,Akte ASC;
+SQL	Archiv	Personen ???	Personen LIKE '%[Personen]%' ORDER BY Datum, Akte
+SQL	Archiv	Datumsbereich ???	Datum BETWEEN '[Datum]' AND '[Datum]' ORDER BY Datum, Akte
+SQL	Archiv	Ordner ???	Ordner = [Ordner] ORDER BY Akte
+SQL	Archiv	Unverarbeitete Akten	Erfasst = 0 ORDER BY Akte, Datum
+SQL	Archiv	Akten (von...bis) ???	Akte BETWEEN [Akte] AND [Akte] ORDER BY Datum,Akte ASC;
+SQL	Archiv	Stichwörter (zwei) ???	Stichwörter LIKE '%[Stichwörter]%' AND Stichwörter LIKE '%[Stichwörter]%' ORDER BY Datum, Akte
+SQL	Adressen	Name ???	Nachname LIKE '[Nachname]%' ORDER BY Nachname, Vorname
+SQL	Adressen	Name, Vorname ???	Nachname LIKE '[Nachname]%' AND Vorname LIKE '[Vorname]%' ORDER BY Nachname,Vorname
+SQL	Adressen	Status ???	Status LIKE '%[Status]%" ORDER BY Nachname, Vorname
+SQL	Adressen	Ort ???	Ort LIKE '[Ort]%' ORDER BY Nachname,Vorname
+SQL	Adressen	Alle, ausser Gelöschte	Status NOT LIKE '%L%' ORDER BY Nachname, Vorname, Zusatzzeile
+SQL	Adressen	Markierte	Markiert = -1 ORDER BY Zusatz, Nachname, Vorname
+SQL	Notizen	Betrifft ???	Betrifft LIKE '%[Betrifft]%' ORDER BY DatumVon DESC
+SQL	Notizen	Markierte	Markiert = -1 ORDER BY DatumVon DESC
+SQL	Literatur	Rubrik ???	Rubrik LIKE '%[Rubrik]%' ORDER BY Rubrik, Code
+SQL	Literatur	Markierte	Markiert = -1 ORDER BY Rubrik, Code
+Reporte	Archiv	Übersicht (A4 hoch)	11905;16837;1134;1134;1134;1134;0;0;6;1;0;0;0;0;0;0;0;0;;	1927;0;1417;283;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Akte: (Akte);	3458;0;1417;283;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Seiten: (Seiten);	0;0;1814;283;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Datum: (Datum);	6803;0;2268;2268;0;0;0;3;0;0;10;0;0;0;0;0;0;;*G*;	0;397;6236;567;0;0;0;0;0;120;10;1;0;0;0;0;0;Arial;Titel;	0;1020;6236;283;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Stichwörter;	6;1356;6236;283;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Personen;	0;1701;6236;567;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;NotizRTF;	5102;0;1134;283;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Ordner: (Ordner);	0;2324;9637;6;0;0;0;4;0;100;10;0;0;0;0;0;-1;;;	6735;15780;4035;285;1;0;0;2;2;120;10;0;0;0;0;0;-1;Arial;Seite: *P* - Datum: *D*;
+Reporte	Archiv	Liste (A4 hoch)	11905;16837;1134;1134;1134;1134;0;0;66;1;0;0;0;0;0;0;0;1;;	0;0;850;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Datum;	6735;15780;4036;240;1;0;0;2;2;120;8;0;1;0;0;0;-1;Arial;Seite: *P* - Datum: *D*;	964;0;850;181;0;0;0;0;2;120;8;0;0;0;0;0;0;Arial;Akte;	1926;0;850;180;0;0;0;0;2;120;8;0;0;0;0;0;0;Arial;Seiten;	3002;0;6520;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Titel;	1136;848;850;181;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Datum;	2110;850;850;180;1;0;0;1;2;120;8;0;0;0;0;0;0;Arial;Akte;	3061;850;850;180;1;0;0;1;2;120;8;0;0;0;0;0;0;Arial;Seiten;	4140;850;850;181;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Titel;	1132;1077;9638;17;1;0;0;4;0;100;10;0;0;0;0;0;1;;; 
+Reporte	Archiv	Z_Overview (US letter)	12240;15840;1080;1080;1080;1080;0;0;6;1;0;0;0;0;0;0;0;0;;	2016;0;1296;216;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Doc: (Akte);	3456;0;1440;216;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Pages: (Seiten);	0;0;1872;216;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Date: (Datum*ES*);	6912;0;2880;2088;0;0;0;3;0;0;10;0;0;0;0;0;0;;*G*;	0;317;6480;562;0;0;0;0;0;120;10;1;0;0;0;0;0;Arial;Titel;	0;936;6480;216;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Stichwörter;	0;1224;6480;216;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Personen;	0;1512;6480;562;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;NotizRTF;	5040;0;1440;216;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Folder: (Ordner);	0;2160;10080;6;0;0;0;4;0;100;10;0;0;0;0;0;-1;;;	7200;14832;3960;288;1;0;0;2;0;120;10;0;0;0;0;0;-1;Arial;Page: *P* - Date: *ES*;
+Reporte	Archiv	Z_List (US letter)	12240;15840;1080;1080;1080;1080;0;0;62;1;0;0;0;0;0;0;0;1;;	0;0;864;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Datum*ES*;	8280;14832;2880;216;1;0;0;2;0;120;8;0;1;0;0;0;-1;Arial;Page: *P* - Date: *ES*;	1008;0;864;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Akte;	2016;0;864;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Seiten;	3024;0;7056;180;0;0;0;0;0;120;8;0;0;0;0;0;0;Arial;Titel;	1080;864;864;180;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Date;	2088;864;864;180;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Doc.;	3096;864;864;180;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Pages;	4104;864;864;180;1;0;0;1;0;120;8;0;0;0;0;0;0;Arial;Title;	1080;1051;10080;14;1;0;0;4;0;100;10;0;0;0;0;0;1;;;
+Reporte	Adressen	Adresskleber	11905;16838;0;57;0;0;-227;-340;8;3;397;340;283;283;0;0;0;0;;	0;0;2834;221;0;1;1;0;0;120;10;0;0;0;0;0;0;Arial;Anrede;	0;227;2834;221;0;1;1;2;0;120;10;0;0;0;0;0;0;Arial;(Vorname) (Nachname);	0;454;2834;221;0;1;1;0;0;120;10;0;0;0;0;0;0;Arial;Zusatzzeile;	0;680;2834;221;0;1;1;0;0;120;10;0;0;0;0;0;0;Arial;Strasse;	0;907;2834;221;0;1;1;2;0;120;10;0;0;0;0;0;1;Arial;(PLZ) (Ort);
+Reporte	Adressen	Adressliste	11905;16837;850;1134;850;1134;0;0;90;1;0;0;0;0;0;0;0;0;;	0;0;2551;113;0;0;0;2;0;120;7;0;0;0;0;0;0;Arial;(Nachname) 	Vorname) (Zusatzzeile);	4082;0;1531;113;0;0;0;2;0;120;7;0;0;0;0;0;0;Arial;(PLZ) (Ort);	2608;0;1417;113;0;0;0;0;0;120;7;0;0;0;0;0;0;Arial;Strasse;	7653;15703;3401;170;1;0;0;2;2;120;7;0;1;0;0;0;0;Arial;Seite *P* von *S* - Druckdatum: *D*;	5669;0;1020;113;0;0;0;0;0;120;7;0;0;0;0;0;0;Arial;Telefon;	6800;0;1020;113;0;0;0;0;0;120;7;0;0;0;0;0;0;Arial;Geschäft;	7937;0;1020;113;0;0;0;0;0;120;7;0;0;0;0;0;0;Arial;Zusatz;	9070;0;1020;113;0;0;0;0;0;120;7;0;0;0;0;0;0;Arial;Telefax;
+Reporte	Notizen	Übersicht (A4 hoch) - Normal	11906;16837;1134;1134;1134;1134;0;0;24;1;0;0;0;0;0;0;1;0;;	6;36;2268;227;0;1;1;2;0;120;10;0;0;0;0;0;0;Arial;Datum: (DatumVon)*13**10*Erledigt: (Erledigt,1);	2381;57;7257;227;0;0;1;0;0;120;10;1;0;0;0;0;0;Arial;Betrifft;	2381;283;7257;227;0;1;1;0;0;110;10;0;0;0;0;0;0;Arial;NotizRTF;	0;567;9638;6;0;2;0;4;0;100;10;0;0;0;0;0;-1;;;	1134;1077;9638;6;1;0;0;4;0;100;10;0;0;0;0;0;-1;;;	8503;15760;2211;227;1;0;0;2;2;120;8;0;1;0;0;0;0;Arial;Seite: *P* - Datum: *D*;
+Reporte	Notizen	Übersicht (A4 hoch) - Erweitert	11906;16837;1134;1134;1134;1134;0;0;12;1;0;0;0;0;0;0;1;0;;	0;0;1134;227;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;(DatumVon);	4989;0;4592;227;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Stichwörter;	1304;0;1984;227;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Pendent ab: (PendentAb);	3401;0;1417;227;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Erledigt: (Erledigt);	1304;255;8277;227;0;1;1;0;0;120;10;1;0;0;0;0;0;Arial;Betrifft;	1304;510;8277;624;0;1;1;0;0;110;10;0;0;0;0;0;0;Arial;NotizRTF;	0;1156;9581;6;0;2;0;4;0;100;10;0;0;0;0;0;-1;;;	1134;1077;9581;6;1;0;0;4;0;100;10;0;0;0;0;0;-1;;;	8503;15760;2211;227;1;0;0;2;2;120;8;0;1;0;0;0;0;Arial;Seite: *P* - Datum: *D*;
+Reporte	Literatur	Übersicht (A4 hoch)	11905;16838;1134;1134;1134;1134;0;0;15;1;0;0;0;0;0;0;;	0;0;850;680;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Code;	964;0;8617;227;0;0;0;0;0;120;10;1;0;0;0;0;0;Arial;Titel;	964;456;8617;227;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Autoren;	964;226;8617;227;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Untertitel;	966;680;4535;227;0;0;0;0;0;120;10;0;0;0;0;0;0;Arial;Verlag;	5666;680;3912;227;0;0;0;2;0;120;10;0;0;0;0;0;0;Arial;Seiten: (AnzahlSeiten) - (Auflage) - (Sprache);	0;935;9637;6;0;0;0;4;0;100;10;0;0;0;0;0;0;;;	1134;1105;9637;6;1;0;0;4;0;100;10;0;0;0;0;0;0;;;	8503;15760;2211;227;1;0;0;2;2;120;8;0;1;0;0;0;0;Arial;Seite: *P* - Datum: *D*;
+Makros	Adressen	Adresse in Zwischenablage kopieren	[ClipboardClear]	[ClipboardField:Anrede]	[ClipboardText:*13**10*]	[ClipboardField:Vorname]	[ClipboardText: ]	[ClipboardField:Nachname]	[ClipboardText:*13**10*]	[ClipboardField:Zusatzzeile]	[ClipboardText:*13**10*]	[ClipboardField:Strasse]	[ClipboardText:*13**10*]	[ClipboardField:PLZ]	[ClipboardText: ]	[ClipboardField:Ort]	[ClipboardRemoveNonsens]
+Makros	Archiv	Vorwärts	{F4}	{F4}	{F4}	{F4}

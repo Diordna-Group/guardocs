@@ -1,0 +1,20 @@
+Create usb stick -> take care about /dev/sda
+
+/home/archivista/iso2stick.sh /home/data/archivista_cd1.iso /dev/sda
+
+
+Update the running box to the second (non active partion)
+
+perl /home/cvs/archivista/jobs/update-system.pl /home/data/archivista_cd1.iso
+
+shutdown now -r
+
+
+Update the strings after translation change
+
+su -
+cp /tmp/languages.* /home/cvs/archivista/languages/perl
+cp /tmp/languages.txt /usr/lib/perl5/site_perl
+perl /home/cvs/archivista/jobs/avdbutility.pl check
+perl /home/archivista/generate_menu.pl
+

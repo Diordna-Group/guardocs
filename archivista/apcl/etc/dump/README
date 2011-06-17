@@ -1,0 +1,3 @@
+Please note:
+
+- archive.sql must be a dump without content (mysqldump --no-data)

@@ -1,0 +1,129 @@
+/*the shrink wrapper for the big image. required to constrain the notes
+  javascript code will update the width to match the image
+*/
+#noteWrapper {
+  position:relative;
+  width:500px;
+  margin:0px auto;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+/* the note background & foreground elements */
+/* required because opacity applies to whole div */
+.noteBackground {
+    position:absolute;
+    text-align:left;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:99;
+}
+.noteForeground {
+    position:absolute;
+    text-align:left;
+    top:0px;
+    left:0px;
+    z-index:100;
+}
+
+/*the menu that shows on right click*/
+#nm{
+    position:absolute;
+    display:none;
+    z-index:1000;
+    font-family:'Arial';
+    margin: 0;
+    padding: 2px;
+    background-color:#dce4ed;
+    border:solid 1px black;
+    /*overflow:auto;*/
+}
+
+#nm a{
+    float:left;
+    color: #000000;
+    text-decoration: none;
+    border-top:solid 1px black;
+    border-left:solid 1px black;
+    border-right:solid 1px black;
+    padding:3px 10px 1px 10px;
+    margin:0px 4px 0px 0px;
+    outline: none;
+}
+
+/*only applied by javascript*/
+#nm .noteMenuTabCurrent{
+    margin-bottom:-1px;
+    padding-bottom:2px;
+    z-index:1010;
+}
+
+#nm #nm_tabText{
+    background-color:#adb9ff;
+}
+
+#nm #nm_tabFont{
+    background-color:#d1ddba;
+}
+
+#nm #nm_tabBox{
+    background-color:#ffc5ad;
+}
+
+#nm #nm_tabOptions{
+    background-color:#f0f0c0;
+}
+
+/* the close button needs special handling */
+#nm #nm_tabClose{
+    /*float:right; works in ff, not ie7 */
+    background-color:#dddddd;
+    font-weight:bold;
+    border-bottom:solid 1px black;
+    padding:1px 3px 1px 3px;
+    line-height:0.9em;
+    margin-right:0px;
+
+    position:absolute;
+    top:2px;
+    right:2px;
+}
+
+/*the <div> around the contents of right-click menu*/
+#nm_content{
+    margin:0px;
+    padding:0px;
+    clear:both;
+    border:solid 1px black;
+    background-color:#ffffff;
+    min-width:320px;
+}
+
+#nm_bodyText{
+    border-top:solid 6px #adb9ff;
+    border-bottom:solid 6px #adb9ff;
+    margin:0px;
+    padding:0px;
+}
+
+#nm_bodyFont{
+    border-top:solid 6px #d1ddba;
+    border-bottom:solid 6px #d1ddba;
+}
+
+#nm_bodyBox{
+    border-top:solid 6px #ffc5ad;
+    border-bottom:solid 6px #ffc5ad;
+}
+
+#nm_bodyOptions{
+    border-top:solid 6px #f0f0c0;
+    border-bottom:solid 6px #f0f0c0;
+}
+
+.noteMenuLabel {
+  text-align:right;
+  font-weight:bold;
+}

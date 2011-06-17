@@ -1,0 +1,370 @@
+TABLE.ImageBlue {
+  background: #dce4ed;
+}
+DIV.ImageBlue {
+  background: #dce4ed;
+}
+TD.Header {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: left;
+  background: #ffcf77;
+  background: #b8d6bd;
+  background: #ffd8ad;
+  padding-left: 2px;
+  padding-right: 3px;
+  border-bottom: 1px solid #000000;
+  color: #1a2772;
+  height: 20px;
+}
+TD.HeaderRight {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: right;
+  background: #ffcf77;
+  background: #b8d6bd;
+  background: #ffd8ad;
+  padding-left: 0px;
+  padding-right: 0px;
+  color: #1a2772;
+  border-bottom: 1px solid #000000;
+  height: 20px;
+}
+TD.Checkbox {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-align: right;
+  background: #ffffff;
+  padding-left: 0px;
+  padding-right: 2px;
+  color: #1a2772;
+  height: 11px;
+}
+TD.CheckboxActive {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-align: right;
+  background: #efefef;
+  padding-left: 0px;
+  padding-right: 2px;
+  color: #1a2772;
+  height: 11px;
+}
+TR.DeactiveRow {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  padding-left: 2px;
+  padding-right: 3px;
+  background: #ffffff;
+  text-align: left;
+  height: 15px;
+}
+TR.ActiveRow {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  padding-left: 2px;
+  padding-right: 3px;
+  text-align: left;
+  background: #efefef;
+  height: 15px;
+}
+TD {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000000;
+}
+TD.Table {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding-left: 3px;
+  padding-right: 3px;
+  background: #f7f7f7;
+}
+TD.symb {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+  background: #f7f7f7;
+}
+TD.Error {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff0000;
+}
+.Error {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff0000;
+}
+TD.Title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: #898eb2;
+  padding-right: 10px;
+}
+TD.Detail {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-left: 0px solid #000000;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background: #ffffff;
+  padding-left: 2px;
+}
+TD.Reiter {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-left: 1px solid #000000;
+  border-top: 1px solid #000000;
+  border-right: 0px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+TD.TableBorder {
+  background: #ffffff;
+}
+FONT.powered {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  color: #000000;
+}
+INPUT.noBorder {
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  background: #ffffff;
+  margin: 1px;
+}
+INPUT.ActiveRow {
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  background: #efefef;
+  margin: 0px;
+}
+INPUT.DeactiveRow {
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  background: #ffffff;
+  margin: 0px;
+}
+INPUT.Checkbox {
+  background: #ffffff;
+  color: #1a2772;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  margin: 0px;
+}
+INPUT.CheckboxHeader {
+  background: #ffd8ad;
+  color: #1a2772;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  margin: 0px;
+}
+INPUT.CheckboxActive {
+  background: #efefef;
+  color: #1a2772;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  margin: 0px;
+}
+INPUT {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-left: 1px solid #c0c0c0;
+  border-top: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+  background: #ffffff;
+  padding-left: 2px;
+}
+INPUT.Button {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-left: 0px solid #c0c0c0;
+  border-top: 0px solid #c0c0c0;
+  border-right: 0px solid #c0c0c0;
+  border-bottom: 0px solid #c0c0c0;
+  background: #dce4ed;
+	padding: 0px;
+	margin: 0px;
+}
+INPUT.ButtonHeader {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-left: 0px solid #c0c0c0;
+  border-top: 0px solid #c0c0c0;
+  border-right: 0px solid #c0c0c0;
+  border-bottom: 0px solid #c0c0c0;
+  background: #ffd8ad;
+}
+
+SELECT {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  border-top: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+  border-left: 1px solid #c0c0c0;
+}
+INPUT.Link {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #3e53dd;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+  text-decoration: underline;
+}
+INPUT.LinkActive {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #3e53dd;
+  background: #efefef;
+  margin: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+  text-decoration: underline;
+}
+P {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+A {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-decoration: underline;
+  color: #3e53dd;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+}
+A:visited {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-decoration: underline;
+  color: #3e53dd;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+}
+A:hover {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-decoration: underline;
+  color: #3e53dd;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+}
+A:active {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  text-decoration: underline;
+  color: #3e53dd;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  padding-left: 0px;
+}
+
+
+.view {
+  background: #adb9ff;
+  border-top:1px solid #000000;
+  border-left:0px solid #000000;
+  border-bottom:1px solid #000000;
+  border-right:0px solid #000000;
+}
+
+.edit {
+  background: #ffc5ad;
+  border-top:1px solid #000000;
+  border-left:0px solid #000000;
+  border-bottom:1px solid #000000;
+  border-right:0px solid #000000;
+}
+
+.search {
+  background: #d1ddba;
+  border-left:0px solid #000000;
+  border-top:1px solid #000000;
+  border-bottom:1px solid #000000;
+  border-right:0px solid #000000;
+}
+
+.data {
+  border-left:1px solid #000000;
+  border-top:1px solid #000000;
+  border-bottom:1px solid #000000;
+  border-right:1px solid #000000;
+}
+
+.detail_data {
+  background: #ffffff;
+  border-left:0px solid #000000;
+  border-top:1px solid #000000;
+  border-bottom:1px solid #000000;
+  border-right:1px solid #000000;
+	margin-left: 2px;
+	margin-top: 2px;
+}
+
+
+
+BODY {
+  background: #dce4ed;
+}
+
+.header {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: left;
+  background: #ffd8ad;
+  padding-left: 1px;
+  padding-right: 1px;
+  border-top: 0px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  color: #1a2772;
+  height: 10px;
+}
+
+.primary_key {
+  border-top: 0px solid #000000;
+  border-right: 0px solid #000000;
+  border-bottom: 0px solid #000000;
+  border-left: 0px solid #000000;
+}

@@ -1,0 +1,125 @@
+# VBForm version file=1.2 builder=0.2
+# [preload] 
+sub
+{
+	return (
+	'id' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Form1',
+			text => 'id',
+			growMode => gm::GrowHiY,
+			origin => [ 5, 90],
+			name => 'id',
+			size => [ 96, 18],
+	}},
+	'Form1' => {
+		class   => 'Prima::Window',
+		module  => 'Prima::Classes',
+		parent => 1,
+		code => Prima::VB::VBLoader::GO_SUB(''),
+		profile => {
+			width => 210,
+			left => 408,
+			name => 'Form1',
+			origin => [ 408, 309],
+			y_centered => 1,
+			sizeMin => [ 210, 115],
+			height => 115,
+			bottom => 309,
+			size => [ 210, 115],
+			sizeDontCare => 0,
+			sizeMax => [ 815, 115],
+			originDontCare => 0,
+			x_centered => 1,
+			centered => 1,
+	}},
+	'de' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowHiY,
+			text => 'Deutsch',
+			origin => [ 5, 70],
+			name => 'de',
+			size => [ 96, 18],
+	}},
+	'en' => {
+		class   => 'Prima::Label',
+		module  => 'Prima::Label',
+		siblings => [qw(focusLink)],
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowHiY,
+			text => 'Englisch',
+			origin => [ 5, 50],
+			name => 'en',
+			size => [ 96, 18],
+	}},
+	'id_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowLoY | gm::GrowHiX,
+			text => '',
+			origin => [ 110, 90],
+			name => 'id_in',
+			size => [ 96, 18],
+	}},
+	'de_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowLoY | gm::GrowHiX,
+			text => '',
+			origin => [ 110, 70],
+			name => 'de_in',
+			size => [ 96, 18],
+	}},
+	'en_in' => {
+		class   => 'Prima::InputLine',
+		module  => 'Prima::InputLine',
+		profile => {
+			owner => 'Form1',
+			text => '',
+			growMode => gm::GrowLoY | gm::GrowHiX,
+			origin => [ 110, 50],
+			name => 'en_in',
+			size => [ 96, 18],
+	}},
+	'ok' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowLoX | gm::GrowHiY,
+			text => 'OK',
+			origin => [ 5, 10],
+			name => 'ok',
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::insert($self->owner(),1);
+','ok', 'onClick'),
+			size => [ 96, 36],
+	}},
+	'cancel' => {
+		class   => 'Prima::Button',
+		module  => 'Prima::Buttons',
+		profile => {
+			owner => 'Form1',
+			growMode => gm::GrowLoX | gm::GrowHiY,
+			text => 'Cancel',
+			origin => [ 110, 10],
+			name => 'cancel',
+			onClick => Prima::VB::VBLoader::GO_SUB('my $self = $_[0];
+Go::insert($self->owner(),0);
+','cancel', 'onClick'),
+			size => [ 96, 36],
+	}},
+	);
+}
