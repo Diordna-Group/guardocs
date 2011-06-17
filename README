@@ -1,1 +1,10 @@
-READ THIS
+This is an attempt to fork Archivista for learning and development purpose. Archivista is a well established 
+DMS, Document Management System that have been in contineous development for years by Archivista GmbH under GPLV2.
+The Archivista site, www.archivista.ch is the place to go to learn about archivista, as I am an infant in
+the field.
+Project also uses;
+- ExactImage (GPLv2) & hocr2pdf (GPL2), see http://www.exactcode.de
+- Wine (LGPLv2, not needed for OS text recognition), http://www.winehq.org
+- T2 project (Linux system), see http://www.t2-project.org
+- Sane (GPLv2 + LGPLv2), see http://www.sane-project.org
+- Cuneiform (BSD), see https://launchpad.net/cuneiform-linux
